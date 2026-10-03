@@ -1,0 +1,20 @@
+{
+  "name": "iot-digital-twin-simulation",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev:api": "npm run dev --workspace @iot-twin/api",
+    "dev:web": "npm run dev --workspace @iot-twin/web",
+    "simulator": "npm run simulator --workspace @iot-twin/api",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@iot-twin/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^5.0.2",
+    "lucide-react": "^0.544.0",
+    "maplibre-gl": "^6.11.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "recharts": "^3.1.2",
+    "socket.io-client": "^4.8.1",
+    "three": "^0.186.1",
+    "vite": "^7.1.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

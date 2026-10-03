@@ -1,0 +1,595 @@
+/* ==========================================================================
+   GARDEN 3D MAP - Clean Agricultural Design
+   ========================================================================== */
+
+.g3dmap-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  height: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.g3dmap-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.g3dmap-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.g3dmap-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-border);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.g3dmap-card__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.g3dmap-card__subtitle {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.g3dmap-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-border);
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.g3dmap-viewport {
+  position: relative;
+  flex: 1;
+  min-height: 300px;
+  background: var(--color-surface-secondary);
+  overflow: hidden;
+}
+
+.g3dmap-viewport__container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.g3dmap-loading,
+.g3dmap-placeholder,
+.g3dmap-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  background: var(--color-surface);
+}
+
+.g3dmap-loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.g3dmap-loading p {
+  margin-top: 16px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.g3dmap-placeholder__content {
+  max-width: 520px;
+}
+
+.g3dmap-placeholder__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-secondary);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-tertiary);
+}
+
+.g3dmap-placeholder h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.g3dmap-placeholder > p {
+  margin-bottom: 20px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.g3dmap-placeholder__details {
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: var(--color-warning-light);
+  border: 1px solid var(--color-warning);
+  text-align: left;
+}
+
+.g3dmap-placeholder__details .eyebrow {
+  margin-bottom: 12px;
+  color: var(--color-warning);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.g3dmap-placeholder__details ul {
+  margin: 0 0 16px 0;
+  padding-left: 20px;
+  color: var(--color-text-primary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.g3dmap-placeholder__details code {
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.g3dmap-error__icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: var(--color-error-light);
+  border: 2px solid var(--color-error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--color-error);
+}
+
+.g3dmap-error h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-error);
+}
+
+.g3dmap-error p {
+  margin-bottom: 6px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.g3dmap-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.g3dmap-banner--warning {
+  background: var(--color-warning-light);
+  border-top: 1px solid var(--color-warning);
+  color: var(--color-warning);
+}
+
+.g3dmap-banner--floating {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-warning);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.g3dmap-banner__icon {
+  font-size: 16px;
+}
+
+.g3dmap-footer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-secondary);
+  font-size: 13px;
+}
+
+.g3dmap-footer__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.g3dmap-footer__label {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.g3dmap-footer__value {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.status-online {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.status-offline {
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+/* MapLibre overrides for light theme */
+.g3dmap-viewport__container .maplibregl-ctrl-attrib {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.g3dmap-viewport__container .maplibregl-ctrl-attrib a {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Tooltip */
+.g3dmap-tooltip {
+  z-index: 20;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(8px);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.g3dmap-tooltip__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.g3dmap-tooltip__header strong {
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.g3dmap-tooltip__status {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.g3dmap-tooltip__body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.g3dmap-tooltip__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.g3dmap-tooltip__row span {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.g3dmap-tooltip__row strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.g3dmap-tooltip__note {
+  font-size: 11px;
+  color: var(--color-warning);
+  margin-top: 4px;
+  padding: 6px 10px;
+  background: var(--color-warning-light);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-warning);
+}
+
+.g3dmap-tooltip__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  margin-top: 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-success-light);
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.g3dmap-tooltip__badge--small {
+  padding: 3px 7px;
+  font-size: 10px;
+  margin-top: 0;
+  margin-left: 8px;
+  background: var(--color-info-light);
+  border: 1px solid var(--color-info);
+  color: var(--color-info);
+}
+
+.g3dmap-tooltip__badge--warning {
+  background: var(--color-warning-light);
+  border: 1px solid var(--color-warning);
+  color: var(--color-warning);
+}
+
+.g3dmap-tooltip__footer {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border-light);
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  line-height: 1.4;
+}
+
+/* Control panel */
+.g3dmap-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(12px);
+  z-index: 15;
+}
+
+.g3dmap-controls__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.g3dmap-controls__header h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.g3dmap-controls__close {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.g3dmap-controls__close:hover {
+  background: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+}
+
+.g3dmap-controls__body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.g3dmap-controls__group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.g3dmap-controls__group label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.g3dmap-controls__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.g3dmap-controls__btn:hover:not(:disabled) {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.g3dmap-controls__btn--active {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.g3dmap-controls__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.g3dmap-controls__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.g3dmap-controls__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.g3dmap-controls__note--warning {
+  color: var(--color-warning);
+  background: var(--color-warning-light);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-warning);
+}
+
+.g3dmap-controls__status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--color-info-light);
+  border: 1px solid var(--color-info);
+  border-radius: var(--radius-md);
+  color: var(--color-info);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .g3dmap-loading .spinner,
+  .g3dmap-controls__spinner {
+    animation: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .g3dmap-card__header {
+    padding: 16px 18px;
+  }
+
+  .g3dmap-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+  }
+
+  .g3dmap-placeholder {
+    padding: 28px;
+  }
+
+  .g3dmap-placeholder__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .g3dmap-controls {
+    width: calc(100% - 32px);
+    left: 16px;
+    right: 16px;
+    top: auto;
+    bottom: 16px;
+  }
+
+  .g3dmap-tooltip {
+    max-width: calc(100vw - 48px);
+  }
+}

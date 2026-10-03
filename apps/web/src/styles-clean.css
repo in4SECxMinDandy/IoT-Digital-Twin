@@ -1,0 +1,446 @@
+/* ==========================================================================
+   IoT Smart Irrigation - Clean Agricultural Design System
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', Consolas, Monaco, monospace;
+
+  /* Colors - Professional Agricultural */
+  --color-primary: #0d7b6f;
+  --color-primary-hover: #0a6559;
+  --color-primary-light: #e6f7f5;
+
+  --color-accent: #5b7fe6;
+  --color-accent-hover: #4968d4;
+  --color-accent-light: #eef2fe;
+
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-error: #ef4444;
+  --color-error-light: #fee2e2;
+  --color-info: #3b82f6;
+  --color-info-light: #dbeafe;
+
+  /* Neutrals - Light Theme */
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f3f4f6;
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  --color-text-light: #ffffff;
+
+  /* Layout */
+  --header-height: 56px;
+  --sidebar-width: 520px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  height: var(--header-height);
+  box-shadow: var(--shadow-md);
+}
+
+.app-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 24px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.app-header__branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-header__logo {
+  width: 32px;
+  height: 32px;
+  background: var(--color-text-light);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.logo-symbol {
+  font-size: 18px;
+}
+
+.app-header__title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.app-header__main-title {
+  color: #ffffff;
+}
+
+.app-header__separator {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.app-header__sub-title {
+  color: #a7f3d0;
+  font-weight: 700;
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.connection-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.connection-pill--connected {
+  background: rgba(16, 185, 129, 0.2);
+  color: #a7f3d0;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.connection-pill--syncing {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fde68a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.connection-pill--disconnected {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.header-btn--primary {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.header-btn--primary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.header-btn--secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-btn--secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.header-btn--icon {
+  background: transparent;
+  color: #ffffff;
+  padding: 7px;
+}
+
+.header-btn--icon:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.header-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   LAYOUT - Split View (Map + Sidebar)
+   ========================================================================== */
+.app-content {
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  height: calc(100vh - var(--header-height));
+}
+
+.app-content__map {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content__sidebar {
+  width: var(--sidebar-width);
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.card__header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.card__body {
+  padding: 20px;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn--secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.btn--secondary:hover {
+  background: var(--color-surface-secondary);
+}
+
+/* ==========================================================================
+   STATUS INDICATORS
+   ========================================================================== */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge--online {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.status-badge--offline {
+  background: var(--color-border-light);
+  color: var(--color-text-tertiary);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ==========================================================================
+   DATA TABLE
+   ========================================================================== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table thead {
+  background: var(--color-surface-secondary);
+}
+
+.data-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.data-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text-primary);
+}
+
+.data-table tbody tr:hover {
+  background: var(--color-surface-secondary);
+}
+
+/* ==========================================================================
+   METRIC CARD
+   ========================================================================== */
+.metric-card {
+  padding: 20px;
+}
+
+.metric-card__label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.metric-card__value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.metric-card__value--accent {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1280px) {
+  .app-content__sidebar {
+    width: 440px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-content {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .app-content__map {
+    height: 400px;
+  }
+
+  .app-content__sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header__inner {
+    padding: 0 16px;
+  }
+
+  .app-content__map {
+    height: 300px;
+  }
+}

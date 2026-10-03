@@ -1,0 +1,13 @@
+node_modules/
+**/node_modules/
+**/dist/
+**/.vite/
+coverage/
+.git/
+.env
+.env.*
+!.env.example
+firmware/.pio/
+firmware/include/secrets.local.h
+docker/mosquitto/data/
+docker/mosquitto/log/

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.local
+coverage/
+apps/api/.env
+apps/web/.env
+firmware/include/secrets.local.h
+docker/mosquitto/data/
+docker/mosquitto/log/
+
+# local tool scratch output
+.playwright-mcp/
+.codegraph/

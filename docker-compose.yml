@@ -1,0 +1,92 @@
+name: iot-digital-twin
+
+services:
+  mongodb:
+    image: mongo:8.0
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: iot_twin
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./docker/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_pub -h 127.0.0.1 -p 1883 -t healthcheck -m ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      MONGODB_URI: mongodb://mongodb:27017/iot_twin
+      MQTT_URL: mqtt://mosquitto:1883
+      CORS_ORIGIN: http://localhost:8080,http://127.0.0.1:8080
+      DEVICE_OFFLINE_TIMEOUT_MS: 20000
+      COMMAND_TIMEOUT_MS: 10000
+      TELEMETRY_SMOOTHING_WINDOW: 5
+      SOIL_WARNING_MIN_PCT: 40
+      SOIL_NORMAL_MIN_PCT: 60
+      HIGH_TEMPERATURE_C: 45
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      mosquitto:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4000/api/health').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+
+  simulator:
+    build:
+      context: .
+      dockerfile: docker/simulator.Dockerfile
+    profiles: ["simulator"]
+    restart: "no"
+    environment:
+      MQTT_URL: mqtt://mosquitto:1883
+      SIMULATOR_SOIL_MOISTURE: ${SIMULATOR_SOIL_MOISTURE:-}
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+
+volumes:
+  mongodb_data:
+  mosquitto_data:
+  mosquitto_log:

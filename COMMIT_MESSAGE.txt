@@ -1,0 +1,81 @@
+feat: implement Clean Agricultural design system
+
+BREAKING CHANGE: Complete UI redesign from dark to light theme
+
+## Summary
+Transformed IoT Smart Garden from Dark Digital Twin theme to Clean
+Agricultural design - a professional light theme optimized for
+agricultural software and outdoor tablet usage.
+
+## Changes
+
+### Layout
+- Changed from 3-column grid to split view (map + sidebar)
+- Map view on left (flexible width)
+- Sidebar on right (520px desktop, 440px tablet)
+- Responsive: stacks vertically on mobile
+
+### Theme
+- Header: Deep navy → Teal (#0d7b6f)
+- Background: Black (#0B0E14) → White (#ffffff)
+- Accents: Cyan glow → Blue solid (#5b7fe6)
+- Shadows: Heavy + glow → Subtle
+- Gradients: Removed entirely
+
+### Bug Fixes
+- Fixed MapLibre GL worker loading error (Vite config)
+- Enhanced 3D plant models (9 → 12 leaves with better geometry)
+- Improved sensor pins (larger size, better lighting)
+
+### Files Modified (3)
+- apps/web/src/App.tsx - Implemented split layout
+- apps/web/src/main.tsx - Updated CSS import
+- apps/web/src/components/Garden3DMap/Garden3DMap.tsx - Updated CSS import
+
+### Files Created (2)
+- apps/web/src/styles-clean.css - Main design system CSS
+- apps/web/src/components/Garden3DMap/garden3dmap-clean.css - Map styles
+
+### Documentation (4)
+- TRIỂN_KHAI_HOÀN_TẤT.md - Vietnamese summary
+- IMPLEMENTATION_COMPLETE.md - English technical details
+- README_DEPLOYMENT.md - Quick reference
+- (Previous) CLEAN_DESIGN_GUIDE.md, FINAL_SUMMARY.md
+
+## Design System
+
+Colors:
+- Primary: #0d7b6f (Teal)
+- Accent: #5b7fe6 (Blue)
+- Success: #10b981 (Green)
+- Warning: #f59e0b (Orange)
+- Error: #ef4444 (Red)
+
+Typography:
+- Font: Inter (sans-serif)
+- Mono: SF Mono (metrics)
+- Sizes: 13-15px body, 32px metrics
+
+Components:
+- Cards: White with 1px border, 8px radius
+- Buttons: Blue primary, subtle shadows
+- Tables: Light gray headers, hover states
+
+## Testing
+- Dev server verified running on localhost:5173
+- All imports resolved correctly
+- No TypeScript errors
+- MapLibre worker issue resolved
+
+## Responsive
+- Desktop (>1280px): Split view with 520px sidebar
+- Tablet (768-1280px): Split view with 440px sidebar
+- Mobile (<768px): Stacked layout with full-width sidebar
+
+## Impact
+- Improved readability for outdoor/bright environments
+- Professional agricultural software aesthetic
+- Better suited for tablet usage in field
+- Cleaner, more maintainable CSS architecture
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
